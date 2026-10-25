@@ -1,1 +1,7 @@
 /target
+/test/fixture/build
+/test/fixture/manifest.toml
+/test/fixture/bundle
+/test/fixture/bundle.exe
+/test/fixture/fixture_cli
+/test/fixture/fixture_cli.cmd

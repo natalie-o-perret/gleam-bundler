@@ -2,7 +2,7 @@
 name = "gleam-bundler"
 version = "0.1.0"
 edition = "2024"
-description = "Bundle a Gleam CLI and its Erlang runtime into one Linux executable"
+description = "Bundle a Gleam CLI and its Erlang runtime into one executable"
 license = "MIT"
 repository = "https://github.com/natalie-o-perret/gleam-bundler"
 rust-version = "1.85"
