@@ -30,11 +30,12 @@ jobs:
         # v5.0.0
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
 
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8
+      - name: Install Go
+        # v7.0.0
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
         with:
-          toolchain: "1.85.0"
-          components: rustfmt, clippy
+          go-version-file: go.mod
+          cache: false
 
       - name: Install Erlang and Gleam
         # v1.24.1
@@ -45,21 +46,30 @@ jobs:
           version-type: strict
 
       - name: Check formatting
-        run: cargo fmt --check
+        shell: bash
+        run: |
+          gofmt -w .
+          git diff --exit-code
 
       - name: Run tests
-        run: cargo test --locked
+        run: go test ./...
 
-      - name: Run Clippy
-        run: cargo clippy --locked --all-targets --all-features -- -D warnings
+      - name: Run vet
+        run: go vet ./...
 
       - name: Build release binary
-        run: cargo build --locked --release
+        shell: bash
+        run: >-
+          go build
+          -trimpath
+          -ldflags="-s -w"
+          -o "./gleam-bundler${{ matrix.executable_suffix }}"
+          .
 
       - name: Bundle the fixture
         shell: bash
         run: >-
-          "./target/release/gleam-bundler${{ matrix.executable_suffix }}"
+          "./gleam-bundler${{ matrix.executable_suffix }}"
           bundle
           --out "./test/fixture/bundle${{ matrix.executable_suffix }}"
           ./test/fixture

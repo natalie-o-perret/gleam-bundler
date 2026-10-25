@@ -4,7 +4,7 @@ Bundle a Gleam CLI and its Erlang runtime into one executable for Linux, macOS,
 or Windows.
 
 ```sh
-cargo install --git https://github.com/natalie-o-perret/gleam-bundler
+go install github.com/natalie-o-perret/gleam-bundler@latest
 gleam-bundler bundle
 ./build/gleam-bundler/my_app
 ```
@@ -14,7 +14,7 @@ installed. It extracts its payload once into the user cache directory.
 
 ## Requirements
 
-Building a bundle requires:
+Installing from source requires Go 1.24 or newer. Building a bundle requires:
 
 - Linux, macOS, or Windows
 - Gleam 1.17 or newer

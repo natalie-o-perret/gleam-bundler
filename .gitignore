@@ -1,4 +1,6 @@
 /target
+/gleam-bundler
+/gleam-bundler.exe
 /test/fixture/build
 /test/fixture/manifest.toml
 /test/fixture/bundle
