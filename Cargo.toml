@@ -1,0 +1,16 @@
+[package]
+name = "gleam-bundler"
+version = "0.1.0"
+edition = "2024"
+description = "Bundle a Gleam CLI and its Erlang runtime into one Linux executable"
+license = "MIT"
+repository = "https://github.com/natalie-o-perret/gleam-bundler"
+rust-version = "1.85"
+
+[dependencies]
+flate2 = "1.1.10"
+tar = "0.4.46"
+
+[profile.release]
+lto = "thin"
+strip = true
